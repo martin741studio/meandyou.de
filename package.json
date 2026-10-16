@@ -1,0 +1,15 @@
+{
+  "name": "meandyou-website",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "me&you Communication (Michael Ehlers) official website — partner project with Pauspapier (Pagency)",
+  "scripts": {
+    "dev": "node serve.mjs",
+    "serve": "node serve.mjs",
+    "deploy": "node deploy.mjs"
+  },
+  "dependencies": {
+    "basic-ftp": "^6.2.1"
+  }
+}
