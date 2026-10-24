@@ -8,17 +8,23 @@ Live Preview: [https://martin741studio.github.io/meandyou.de/](https://martin741
 
 ---
 
-## 1. Seitenstruktur (10 Seiten)
+## 1. Seitenstruktur (13 Seiten, Stand 24.10.2026)
 - `index.html` — Startseite (Einstieg, Vertrauen, Problem, Methode, Michael, Stimmen, FAQ, Kontakt)
 - `seminare.html` — Seminare & Masterclasses (Termine Mallorca, Barcelona, Zypern, Frankfurt, Berlin)
 - `michael.html` — Über Michael Ehlers (Werdegang, Methode, Top-100-Auszeichnung, Medien)
 - `rhetorik.html` — Was ist Rhetorik (Ratgeber, Einstieg)
 - `stimmen.html` — Video- und Kundenstimmen
-- `faq.html` — Häufig gestellte Fragen (13 Fragen)
+- `faq.html` — Häufig gestellte Fragen
 - `gespraech-buchen.html` — Terminbuchung
-- `lp-replayers.html` — Persona-Landingpage „The Replayers“ (Skool Community „Talk to ME!“)
+- `lp-replayers.html` — Persona-Landingpage „The Replayers“ (Skool Community „Talk to ME!“, 44 USD/Monat)
 - `lp-overlooked.html` — Persona-Landingpage „The Overlooked“
 - `lp-undersold.html` — Persona-Landingpage „The Undersold“
+- `impressum.html`, `datenschutz.html`, `agb.html` — Pflichtseiten, Firma Me&You Communication FZCO (Dubai), Geschäftsführer Tarek Port
+
+**Noch NICHT gebaut, aber live auf meandyou.de nötig, weil alle laufenden Meta-Anzeigen dorthin führen:**
+`/sichtbarkeit-neu` (VSL + Calendly, kostenloses Training) und `/videokurs/start` (Ablefy-Checkout). Diese Seiten fehlen in diesem Repo.
+
+**Noch offen:** alle gelb markierten Stellen (`class="fehlt"`) sind unbestätigte Kundendaten (Seminarnamen, Person im Gespräch, Telefonnummer, u.a.). Alle Seiten tragen noch `noindex,nofollow` und den Hinweis „Prototyp · nicht live“, bis diese Punkte und die Domain-Umstellung mit Martin geklärt sind.
 
 ---
 
