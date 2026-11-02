@@ -45,6 +45,21 @@ p{margin:0}
 .hdr nav{display:flex;gap:30px;margin-left:auto;font-size:16px;font-weight:500}
 .hdr nav a{text-decoration:none;color:var(--ink)}.hdr nav a:hover{color:var(--cta)}
 .hdr .btn{padding:14px 24px;font-size:16px}
+.hdr__burger{display:none;margin-left:auto;width:40px;height:40px;border:none;background:none;cursor:pointer;flex:none;position:relative}
+.hdr__burger span,.hdr__burger span::before,.hdr__burger span::after{content:"";position:absolute;left:9px;right:9px;height:2px;background:var(--ink);transition:transform .2s,opacity .2s}
+.hdr__burger span{top:19px}.hdr__burger span::before{top:-8px}.hdr__burger span::after{top:8px}
+.hdr__in.open .hdr__burger span{background:transparent}
+.hdr__in.open .hdr__burger span::before{transform:translateY(8px) rotate(45deg)}
+.hdr__in.open .hdr__burger span::after{transform:translateY(-8px) rotate(-45deg)}
+@media (max-width:860px){
+ .hdr{top:0}
+ .hdr__in{border-radius:0;padding:10px 14px;gap:0;flex-wrap:wrap}
+ .hdr nav{display:none;order:4;width:100%;flex-direction:column;align-items:flex-start;gap:0;margin:14px 0 4px;font-size:19px}
+ .hdr__in.open nav{display:flex}
+ .hdr nav a{padding:12px 0;width:100%;border-top:1px solid rgba(42,38,34,.1)}
+ .hdr .btn{margin-left:auto;padding:11px 18px;font-size:14px;order:2}
+ .hdr__burger{display:block;order:3;margin-left:10px}
+}
 /* hero */
 .hero{position:relative;min-height:760px;height:100vh;max-height:900px;display:flex;align-items:center;overflow:hidden;background:var(--paper)}
 .hero__img{position:absolute;inset:0 0 0 auto;width:66%;overflow:hidden}
@@ -655,5 +670,12 @@ p{margin:0}
  // one FAQ open at a time
  var ds = document.querySelectorAll('.acc details');
  ds.forEach(function(d){ d.addEventListener('toggle', function(){ if(d.open){ ds.forEach(function(o){ if(o!==d) o.open=false; }); } }); });
+ // mobile nav burger
+ var hin = document.querySelector('.hdr__in'), burger = document.querySelector('.hdr__burger');
+ if(hin && burger){
+  burger.addEventListener('click', function(){ hin.classList.toggle('open'); });
+  hin.querySelectorAll('nav a').forEach(function(a){ a.addEventListener('click', function(){ hin.classList.remove('open'); }); });
+  addEventListener('resize', function(){ if(innerWidth>860) hin.classList.remove('open'); });
+ }
 })();
 </script></body></html>

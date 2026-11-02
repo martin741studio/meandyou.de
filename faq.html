@@ -45,6 +45,21 @@ p{margin:0}
 .hdr nav{display:flex;gap:30px;margin-left:auto;font-size:16px;font-weight:500}
 .hdr nav a{text-decoration:none;color:var(--ink)}.hdr nav a:hover{color:var(--cta)}
 .hdr .btn{padding:14px 24px;font-size:16px}
+.hdr__burger{display:none;margin-left:auto;width:40px;height:40px;border:none;background:none;cursor:pointer;flex:none;position:relative}
+.hdr__burger span,.hdr__burger span::before,.hdr__burger span::after{content:"";position:absolute;left:9px;right:9px;height:2px;background:var(--ink);transition:transform .2s,opacity .2s}
+.hdr__burger span{top:19px}.hdr__burger span::before{top:-8px}.hdr__burger span::after{top:8px}
+.hdr__in.open .hdr__burger span{background:transparent}
+.hdr__in.open .hdr__burger span::before{transform:translateY(8px) rotate(45deg)}
+.hdr__in.open .hdr__burger span::after{transform:translateY(-8px) rotate(-45deg)}
+@media (max-width:860px){
+ .hdr{top:0}
+ .hdr__in{border-radius:0;padding:10px 14px;gap:0;flex-wrap:wrap}
+ .hdr nav{display:none;order:4;width:100%;flex-direction:column;align-items:flex-start;gap:0;margin:14px 0 4px;font-size:19px}
+ .hdr__in.open nav{display:flex}
+ .hdr nav a{padding:12px 0;width:100%;border-top:1px solid rgba(42,38,34,.1)}
+ .hdr .btn{margin-left:auto;padding:11px 18px;font-size:14px;order:2}
+ .hdr__burger{display:block;order:3;margin-left:10px}
+}
 /* hero */
 .hero{position:relative;min-height:760px;height:100vh;max-height:900px;display:flex;align-items:center;overflow:hidden;background:var(--paper)}
 .hero__img{position:absolute;inset:0 0 0 auto;width:66%;overflow:hidden}
@@ -427,6 +442,7 @@ section.fgrp[id]{scroll-margin-top:150px}
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebPage", "@id": "https://www.meandyou.de/faq#webpage", "url": "https://www.meandyou.de/faq", "name": "Häufige Fragen zum Rhetorik-Seminar | Michael Ehlers", "description": "Antworten zu den Rhetorik-Seminaren mit Michael Ehlers: Inhalte, Orte und Termine, Ablauf, Kosten, Storno und das kostenlose Gespräch.", "inLanguage": "de", "about": {"@id": "https://www.meandyou.de/#organization"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://www.meandyou.de/"}, {"@type": "ListItem", "position": 2, "name": "FAQ", "item": "https://www.meandyou.de/faq"}]}, {"@type": "EducationalOrganization", "@id": "https://www.meandyou.de/#organization", "name":"Me&You Communication FZCO", "alternateName": "me&you Communication", "url": "https://www.meandyou.de/", "email": "management@meandyou.de"}]}</script>
 </head><body><header class="hdr"><div class="hdr__in">
  <a class="hdr__logo" href="index.html"><img src="assets/faq/logo-dark.png" alt="Michael Ehlers &amp; You Communication, Startseite" width="1794" height="647"></a>
+ <button class="hdr__burger" aria-label="Menü" aria-expanded="false"><span></span></button>
  <nav aria-label="Hauptnavigation"><a href="seminare.html">Seminare</a><a href="michael.html">Michael</a><a href="rhetorik.html">Was ist Rhetorik</a><a href="stimmen.html">Stimmen</a><a href="#top" aria-current="page" style="color:var(--cta)">FAQ</a></nav>
  <a class="btn" href="gespraech-buchen.html?utm_source=faq&utm_content=header" data-event="booking_click">Optionen ansehen</a>
 </div></header><main>
@@ -535,5 +551,12 @@ section.fgrp[id]{scroll-margin-top:150px}
  function act(){ var cur = ''; secs.forEach(function(s){ if(s.getBoundingClientRect().top < 220) cur = s.id; });
   document.querySelectorAll('.subnav .chip').forEach(function(c){ c.classList.toggle('on', c.getAttribute('data-t') === cur); }); }
  addEventListener('scroll', act, {passive:true}); act();
+ // mobile nav burger
+ var hin = document.querySelector('.hdr__in'), burger = document.querySelector('.hdr__burger');
+ if(hin && burger){
+  burger.addEventListener('click', function(){ hin.classList.toggle('open'); });
+  hin.querySelectorAll('nav a').forEach(function(a){ a.addEventListener('click', function(){ hin.classList.remove('open'); }); });
+  addEventListener('resize', function(){ if(innerWidth>860) hin.classList.remove('open'); });
+ }
 })();
 </script></body></html>

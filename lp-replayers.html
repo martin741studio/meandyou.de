@@ -45,6 +45,21 @@ p{margin:0}
 .hdr nav{display:flex;gap:30px;margin-left:auto;font-size:16px;font-weight:500}
 .hdr nav a{text-decoration:none;color:var(--ink)}.hdr nav a:hover{color:var(--cta)}
 .hdr .btn{padding:14px 24px;font-size:16px}
+.hdr__burger{display:none;margin-left:auto;width:40px;height:40px;border:none;background:none;cursor:pointer;flex:none;position:relative}
+.hdr__burger span,.hdr__burger span::before,.hdr__burger span::after{content:"";position:absolute;left:9px;right:9px;height:2px;background:var(--ink);transition:transform .2s,opacity .2s}
+.hdr__burger span{top:19px}.hdr__burger span::before{top:-8px}.hdr__burger span::after{top:8px}
+.hdr__in.open .hdr__burger span{background:transparent}
+.hdr__in.open .hdr__burger span::before{transform:translateY(8px) rotate(45deg)}
+.hdr__in.open .hdr__burger span::after{transform:translateY(-8px) rotate(-45deg)}
+@media (max-width:860px){
+ .hdr{top:0}
+ .hdr__in{border-radius:0;padding:10px 14px;gap:0;flex-wrap:wrap}
+ .hdr nav{display:none;order:4;width:100%;flex-direction:column;align-items:flex-start;gap:0;margin:14px 0 4px;font-size:19px}
+ .hdr__in.open nav{display:flex}
+ .hdr nav a{padding:12px 0;width:100%;border-top:1px solid rgba(42,38,34,.1)}
+ .hdr .btn{margin-left:auto;padding:11px 18px;font-size:14px;order:2}
+ .hdr__burger{display:block;order:3;margin-left:10px}
+}
 /* hero */
 .hero{position:relative;min-height:760px;height:100vh;max-height:900px;display:flex;align-items:center;overflow:hidden;background:var(--paper)}
 .hero__img{position:absolute;inset:0 0 0 auto;width:66%;overflow:hidden}
@@ -471,6 +486,7 @@ p{margin:0}
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebPage", "@id": "https://www.meandyou.de/schlagfertigkeit-lernen#webpage", "url": "https://www.meandyou.de/schlagfertigkeit-lernen", "name": "Schlagfertigkeit lernen: Wenn die Worte zu spät kommen", "description": "Dir fällt die passende Antwort erst auf dem Heimweg ein? So lernst du Schlagfertigkeit mit Michael Ehlers: Übungen, Methode und eine Community zum Üben.", "inLanguage": "de", "about": {"@type": "Thing", "name": "Schlagfertigkeit"}, "mentions": [{"@type": "DefinedTerm", "name": "Treppenwitz", "sameAs": "https://de.wikipedia.org/wiki/Treppenwitz"}, {"@id": "https://www.meandyou.de/michael#person"}], "publisher": {"@id": "https://www.meandyou.de/#organization"}}, {"@type": "Person", "@id": "https://www.meandyou.de/michael#person", "name": "Michael Ehlers", "url": "https://www.meandyou.de/michael", "jobTitle": "Rhetoriktrainer und Executive Coach", "knowsAbout": ["Rhetorik", "Schlagfertigkeit"], "sameAs": ["https://institut-ehlers.de/michael-ehlers", "https://de.linkedin.com/in/rhetoriktrainer", "https://podcasts.apple.com/de/podcast/un%C3%BCbersehbar-der-rhetorik-podcast-mit-michael-ehlers/id286899257"]}, {"@type": "PodcastSeries", "name": "Unübersehbar – Der Rhetorik Podcast mit Michael Ehlers", "url": "https://podcasts.apple.com/de/podcast/un%C3%BCbersehbar-der-rhetorik-podcast-mit-michael-ehlers/id286899257", "startDate": "2008", "author": {"@id": "https://www.meandyou.de/michael#person"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://www.meandyou.de/"}, {"@type": "ListItem", "position": 2, "name": "Schlagfertigkeit lernen", "item": "https://www.meandyou.de/schlagfertigkeit-lernen"}]}, {"@type": "EducationalOrganization", "@id": "https://www.meandyou.de/#organization", "name":"Me&You Communication FZCO", "alternateName": "me&you Communication", "url": "https://www.meandyou.de/", "email": "management@meandyou.de"}]}</script>
 </head><body><header class="hdr"><div class="hdr__in">
  <a class="hdr__logo" href="index.html"><img src="assets/lp-replayers/logo-dark.png" alt="Michael Ehlers &amp; You Communication, Startseite" width="1794" height="647"></a>
+ <button class="hdr__burger" aria-label="Menü" aria-expanded="false"><span></span></button>
  <nav aria-label="Hauptnavigation"><a href="seminare.html">Seminare</a><a href="michael.html">Michael</a><a href="rhetorik.html">Was ist Rhetorik</a><a href="stimmen.html">Stimmen</a><a href="faq.html">FAQ</a></nav>
  <a class="btn" href="https://www.skool.com/talk-to-me-9409/about?utm_source=lp-replayers&utm_content=header" data-event="community_click" data-section="header">Community beitreten</a>
 </div></header><main>
@@ -614,6 +630,13 @@ p{margin:0}
  // one FAQ open at a time
  var ds = document.querySelectorAll('.acc details');
  ds.forEach(function(d){ d.addEventListener('toggle', function(){ if(d.open){ ds.forEach(function(o){ if(o!==d) o.open=false; }); } }); });
+ // mobile nav burger
+ var hin = document.querySelector('.hdr__in'), burger = document.querySelector('.hdr__burger');
+ if(hin && burger){
+  burger.addEventListener('click', function(){ hin.classList.toggle('open'); });
+  hin.querySelectorAll('nav a').forEach(function(a){ a.addEventListener('click', function(){ hin.classList.remove('open'); }); });
+  addEventListener('resize', function(){ if(innerWidth>860) hin.classList.remove('open'); });
+ }
 })();
 
 ;(function(){
